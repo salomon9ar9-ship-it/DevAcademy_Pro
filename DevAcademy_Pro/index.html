@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevAcademy Pro | Plataforma Premium de Aprendizaje</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Principal -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Fondo animado -->
+  <div class="bg-animation">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Toast de bienvenida -->
+  <div id="toast-bienvenida" class="toast" hidden>
+    <div class="toast-icon"></div>
+    <div class="toast-content">
+      <strong>¡Bienvenido a DevAcademy!</strong>
+      <p>Tu sesión de estudio ha comenzado.</p>
+    </div>
+  </div>
+
+  <!-- Header con Toggle de Tema -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo">
+        <span class="logo-icon">🚀</span>
+        <div class="logo-text">
+          <h1>DevAcademy Pro</h1>
+          <p class="tagline">Plataforma Premium de Aprendizaje</p>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <div class="theme-toggle-wrapper">
+          <span class="theme-label">☀️</span>
+          <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+          </label>
+          <span class="theme-label">🌙</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- SECCIÓN 1: Reproductor Multimedia -->
+    <section class="media-section card">
+      <div class="section-header">
+        <h2><span class="icon-circle">📺</span> Reproductor de Contenido</h2>
+        <span class="badge badge--live">● EN VIVO</span>
+      </div>
+      
+      <div class="media-container">
+        <div class="media-wrapper">
+          <video id="reproductor-video" controls hidden>
+            <p>Tu navegador no soporta video.</p>
+          </video>
+          <audio id="reproductor-audio" controls hidden>
+            <p>Tu navegador no soporta audio.</p>
+          </audio>
+          
+          <div id="media-placeholder" class="media-placeholder">
+            <div class="placeholder-icon">🎬</div>
+            <h3>Selecciona un módulo</h3>
+            <p>Haz clic en cualquier curso para comenzar</p>
+          </div>
+        </div>
+        
+        <div class="custom-controls">
+          <button id="btn-play" class="btn btn-primary">
+            <span class="btn-icon">▶</span> Play
+          </button>
+          <button id="btn-pause" class="btn btn-secondary">
+            <span class="btn-icon"></span> Pausa
+          </button>
+          <button id="btn-mute" class="btn btn-secondary">
+            <span class="btn-icon">🔊</span> <span id="mute-text">Mute</span>
+          </button>
+          <div class="volume-control">
+            <span>🔉</span>
+            <input type="range" id="volumen" min="0" max="1" step="0.1" value="1">
+          </div>
+        </div>
+        
+        <div id="media-status" class="status-text">
+          <span class="status-dot"></span>
+          Esperando selección...
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: Módulos Dinámicos -->
+    <section class="modules-section">
+      <div class="section-header">
+        <h2><span class="icon-circle">📚</span> Módulos de Aprendizaje</h2>
+        <span class="badge badge--info">8 Cursos</span>
+      </div>
+      <p class="section-subtitle">Explora nuestra biblioteca de contenido multimedia</p>
+      <div id="lista-modulos" class="modules-grid"></div>
+    </section>
+
+    <!-- SECCIÓN 3: Formulario de Registro -->
+    <section class="form-section card">
+      <div class="section-header">
+        <h2><span class="icon-circle">📝</span> Registro de Estudiante</h2>
+        <span class="badge badge--success">GRATIS</span>
+      </div>
+      
+      <form id="formulario-registro" novalidate>
+        <div class="form-group">
+          <label for="nombre" class="form-label">
+            <span class="label-icon"></span> Nombre completo
+          </label>
+          <input type="text" id="nombre" class="form-input" placeholder="Ej: Juan Pérez" required>
+          <span class="error-msg" id="error-nombre"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="correo" class="form-label">
+            <span class="label-icon">📧</span> Correo electrónico
+          </label>
+          <input type="email" id="correo" class="form-input" placeholder="tu@email.com" required>
+          <span class="error-msg" id="error-correo"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">
+            <span class="label-icon">🔒</span> Contraseña (mín. 6 caracteres)
+          </label>
+          <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+          <span class="error-msg" id="error-password"></span>
+        </div>
+
+        <button type="submit" class="btn btn-gradient btn-full">
+          Registrarse al Curso
+        </button>
+        
+        <p id="form-success" class="success-msg" hidden>
+          ✅ ¡Registro exitoso! Bienvenido a la plataforma.
+        </p>
+      </form>
+    </section>
+
+    <!-- SECCIÓN 4: Temporizador -->
+    <section class="timer-section card">
+      <div class="section-header">
+        <h2><span class="icon-circle">⏱️</span> Temporizador de Estudio</h2>
+        <span class="badge badge--warning">POMODORO</span>
+      </div>
+      
+      <div class="timer-display-wrapper">
+        <div class="timer-display" id="timer-display">00:00</div>
+        <div class="timer-label">Tiempo de estudio</div>
+      </div>
+      
+      <div class="timer-controls">
+        <button id="btn-iniciar-timer" class="btn btn-primary">▶ Iniciar</button>
+        <button id="btn-detener-timer" class="btn btn-danger">⏹ Detener</button>
+        <button id="btn-reiniciar-timer" class="btn btn-secondary">↻ Reiniciar</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="main-footer">
+    <p>🚀 DevAcademy Pro - Funcionalidades Avanzadas de JavaScript</p>
+    <p class="footer-tech">HTML5 • CSS3 • Vanilla JS (ES6+)</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
